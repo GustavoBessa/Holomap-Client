@@ -1,0 +1,16 @@
+@media only screen and (max-width: 600px) {
+	.w3-bar-item{
+		display: none!important;
+	}
+	#logo{
+		display: block!important;
+		width: 100%!important;
+		padding: 20px!important;
+	}
+	#btnQR{
+		width: 80%!important;
+	}
+	.w3-col{
+		margin: 0px!important;
+	}
+}

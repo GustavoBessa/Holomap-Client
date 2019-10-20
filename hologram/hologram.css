@@ -1,0 +1,27 @@
+body{
+	background-color: black;
+}
+#globe1 {
+	position: absolute;
+	top: calc(50% - 165px);
+	left: calc(50% - 165px);
+	transform: rotateZ(-45deg);
+}
+#globe2 {
+	position: absolute;
+	top: calc(50% - 165px);
+	right: calc(50% - 165px);
+	transform: rotateZ(45deg);
+}
+#globe3 {
+	position: absolute;
+	bottom: calc(50% - 165px);
+	left: calc(50% - 165px);
+	transform: rotateZ(-135deg);
+}
+#globe4 {
+	position: absolute;
+	bottom: calc(50% - 165px);
+	right: calc(50% - 165px);
+	transform: rotateZ(135deg);
+}

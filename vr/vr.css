@@ -1,0 +1,14 @@
+body {
+}
+#fundo{
+	background-image: url('bg.jpg');
+	background-repeat: repeat;
+	background-size: 100% 100%;
+	display: flex;
+	padding: 20px;
+	flex-direction: column;
+	align-items: center;
+}
+canvas {
+	transform: rotateZ(90deg);
+}
