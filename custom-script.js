@@ -6,6 +6,8 @@ socket.onopen = function () {
     console.log('WebSocket is connected.');
 };
 
+var geocoder = new WorldWind.NominatimGeocoder();
+
 // fim web socket
 
 var wwd = new WorldWind.WorldWindow("globe");
@@ -75,28 +77,51 @@ document.getElementById('tempBtn').addEventListener('click', function (e) {
 // pesquisa cordenadas e move globo
 function moveTo(city) {
     $('.lds-ripple').removeClass('hide');
-    $.ajax({
-        type: "GET",
-        url: 'https://geocode.xyz/Hauptstr.,+57632+' + city + '?json=1',
-        success: function (result) {
+
+    geocoder.lookup(city, function (geocoder, result) {
+        if (result.length > 0) {
+            latitude = parseFloat(result[0].lat);
+            longitude = parseFloat(result[0].lon);
+            console.log(result[0])
+
+            // WorldWind.Logger.log(
+            //     WorldWind.Logger.LEVEL_INFO, city + ": " + latitude + ", " + longitude);
+
+            // thisLayerManager.goToAnimator.goTo(new WorldWind.Location(latitude, longitude));
+
             $('.lds-ripple').addClass('hide');
 
-            // resgata coordenadas e rotaciona mapa
-            var position = new WorldWind.Position(result.latt, result.longt);
+            //   resgata coordenadas e rotaciona mapa
+            var position = new WorldWind.Position(latitude, longitude);
             wwd.goTo(position);
 
-            // enviar posição
-            socket.send(JSON.stringify({ type: 'move', lat: result.latt, lon: result.longt }));
-
-            // põe marker (ta ficando meio torto)
-            //placeMarker(result.latt, result.longt);
-
-        },
-        error: function (textStatus, errorThrown) {
-            console.warn('Erro ao pesquisar cordenadas da cidade');
-            $('.lds-ripple').addClass('hide');
+            //   enviar posição
+            socket.send(JSON.stringify({ type: 'move', lat: latitude, lon: longitude }));
         }
     });
+
+    // $.ajax({
+    //     type: "GET",
+    //     url: 'https://geocode.xyz/Hauptstr.,+57632+' + city + '?json=1',
+    //     success: function (result) {
+    //         $('.lds-ripple').addClass('hide');
+
+    //         // resgata coordenadas e rotaciona mapa
+    //         var position = new WorldWind.Position(result.latt, result.longt);
+    //         wwd.goTo(position);
+
+    //         // enviar posição
+    //         socket.send(JSON.stringify({ type: 'move', lat: result.latt, lon: result.longt }));
+
+    //         // põe marker (ta ficando meio torto)
+    //         //placeMarker(result.latt, result.longt);
+
+    //     },
+    //     error: function (textStatus, errorThrown) {
+    //         console.warn('Erro ao pesquisar cordenadas da cidade');
+    //         $('.lds-ripple').addClass('hide');
+    //     }
+    // });
 }
 
 function placeMarker(lat, lon) {
