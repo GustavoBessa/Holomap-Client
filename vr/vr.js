@@ -8,8 +8,7 @@ wwd1.addLayer(new WorldWind.BMNGLandsatLayer());
 wwd2.addLayer(new WorldWind.BMNGOneImageLayer());
 wwd2.addLayer(new WorldWind.BMNGLandsatLayer());
 
-var ip = "10.10.80.136";
-var socket = new WebSocket('ws://' + ip + ':8080');
+var socket = new WebSocket('ws://10.10.80.136:8080');
 
 socket.onopen = function (event) {
     console.log('WebSocket is connected.');
