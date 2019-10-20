@@ -20,12 +20,12 @@
 			var ferramentas = selecionados.split(";");
 			var novaSelecao = "";
 			for (var i = 0; i < ferramentas.length; i++) {
-					console.log(ferramentas[i]+"="+id);
+				console.log(ferramentas[i] + "=" + id);
 				if (ferramentas[i] == id) {
-					str = id+";"
+					str = id + ";"
 					novaSelecao = novaSelecao.replace(str, "");
 				} else {
-					novaSelecao = id+";";
+					novaSelecao = id + ";";
 				}
 			}
 			console.log(novaSelecao);
@@ -42,10 +42,10 @@
 
 	<div class="w3-bar w3-purple" style="border-bottom: 5px solid purple">
 		<a href="#home" class="w3-bar-item w3-button w3-hover-purple w3-padding"><img src="logo.png" width="120px"></a>
-		<a href="#sair" class="w3-xlarge w3-bar-item w3-button w3-right">Sair</a>
-		<a href="#config" class="w3-xlarge w3-bar-item w3-button w3-right w3-border-right">Configuração</a>
-		<a href="#artigos" class="w3-xlarge w3-bar-item w3-button w3-right w3-border-right">Artigos</a>
-		<a href="#home" class="w3-xlarge w3-bar-item w3-button w3-right w3-border-right">Início</a>
+		<a href="#sair" class="w3-xlarge w3-bar-item w3-button w3-right">Log out</a>
+		<a href="#config" class="w3-xlarge w3-bar-item w3-button w3-right w3-border-right">Configuration</a>
+		<a href="#artigos" class="w3-xlarge w3-bar-item w3-button w3-right w3-border-right">Articles</a>
+		<a href="#home" class="w3-xlarge w3-bar-item w3-button w3-right w3-border-right">Home</a>
 	</div>
 	<div class="w3-container">
 		<div class="w3-rows w3-padding w3-margin-top">
@@ -55,30 +55,30 @@
 				</canvas>
 			</div>
 			<div class="w3-col l2 w3-padding" style="margin-top: 100px;border: 5px solid #dadada;">
-				<a href="#" class="w3-button w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="check1"
-					onclick="toggleSelect('1')" style="width: 85%;border-bottom: 5px solid purple">
+				<a href="javascript:void(0)" class="w3-button w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="tempBtn"
+					style="width: 85%;border-bottom: 5px solid purple">
 					<i class='fas fa-temperature-high'></i>
-					Temperatura</a><br>
-				<a href="#" class="w3-button w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="check2"
+					Temperature</a><br>
+				<a href="javascript:void(0)" class="w3-button w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="check2"
 					onclick="toggleSelect('2')" style="width: 85%;border-bottom: 5px solid purple">
 					<i class='fas fa-cloud'></i>
-					Umidade</a><br>
-				<a href="#" class="w3-button  w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="check3"
+					Moisture</a><br>
+				<a href="javascript:void(0)" class="w3-button  w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="check3"
 					onclick="toggleSelect('3')" style="width: 85%;border-bottom: 5px solid purple">
 					<i class='far fa-snowflake'></i>
-					Geada</a><br>
-				<a href="#" class="w3-button w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="check4"
+					Frost</a><br>
+				<a href="javascript:void(0)" class="w3-button w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="check4"
 					onclick="toggleSelect('4')" style="width: 85%;border-bottom: 5px solid purple">
 					<i class='fas fa-wind'></i>
-					Vento</a><br>
-				<a href="#" class="w3-button  w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="check5"
+					Wind</a><br>
+				<a href="javascript:void(0)" class="w3-button  w3-margin w3-round-xlarge w3-deep-purple w3-left-align" id="check5"
 					onclick="toggleSelect('5')" style="width: 85%;border-bottom: 5px solid purple">
 					<i class='fas fa-cloud-showers-heavy'></i>
-					Tempestade</a><br>
+					Storm</a><br>
 			</div>
 			<div class="w3-col l3 w3-padding w3-center" style="margin-top: 100px;">
 				<input type="text" class="w3-padding" name="search" style="border: 5px solid #dadada;" id="cityToFind"
-					placeholder="Buscar...">
+					placeholder="Search...">
 				<a href="#" id="searchBtn" class="w3-xlarge w3-button w3-round-xlarge w3-deep-purple"
 					style="border-bottom: 5px solid purple;">
 					<i class="fa fa-search"></i></a>
@@ -88,19 +88,20 @@
 	</div>
 	<div class="w3-container w3-padding w3-center" style="padding-top: 45px!important;">
 		<input type="text" name="" id="selecionados" value="" hidden="">
-		<a href="#a"  style="width: 45%; border-bottom: 5px solid purple;" class="w3-button w3-deep-purple w3-round-xlarge w3-margin" onclick="qr()">GERAR QR CODE</a>
+		<a href="#a" style="width: 45%; border-bottom: 5px solid purple;"
+			class="w3-button w3-deep-purple w3-round-xlarge w3-margin" onclick="qr()">BUILD QR CODE</a>
 		<input type="text" id="urlQR" hidden="" value="http://10.10.80.136:80/CHAMPZ/hackathon/aluno/index.html?">
 		<script type="text/javascript" src="qrcode.min.js"></script>
 		<script type="text/javascript">
 			function qr() {
 				if (localStorage.getItem('c') !== '') {
-					cidade = 'c='+localStorage.getItem('c');
-				}else{
+					cidade = 'c=' + localStorage.getItem('c');
+				} else {
 					cidade = '';
 				}
 				document.getElementById('qrcode').innerHTML = '';
 				linkQR = document.getElementById('urlQR').value;
-				new QRCode(document.getElementById('qrcode'),linkQR+cidade);
+				new QRCode(document.getElementById('qrcode'), linkQR + cidade);
 			}
 		</script>
 	</div>
